@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ProgressBar from "react-bootstrap/ProgressBar";
 import EnneagramItem from "./EnneagramItem";
 
 const Enneagram = () => {
@@ -133,6 +134,12 @@ const Enneagram = () => {
 
   return (
     <div>
+      <ProgressBar
+        className="mb-3"
+        now={((curPage + 1) / TOTAL_PAGE) * 100}
+        label={`${curPage + 1} / ${TOTAL_PAGE}`}
+      />
+
       {questionList
         .slice(curPage * COUNT_PER_PAGE, curPage * COUNT_PER_PAGE + curCount)
         .map((e, index) => (
