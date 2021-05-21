@@ -3,10 +3,14 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./About.scss";
 
+interface AboutProp {
+  onClickStart: Function;
+}
+
 /**
  * 검사하기 전에 읽어볼 사항
  */
-const About = () => {
+const About: React.FC<AboutProp> = ({ onClickStart }) => {
   return (
     <div className="about">
       <Card body>
@@ -38,7 +42,11 @@ const About = () => {
           </li>
         </ul>
 
-        <Button variant="outline-primary" size="lg">
+        <Button
+          variant="outline-primary"
+          size="lg"
+          onClick={() => onClickStart()}
+        >
           시작하기
         </Button>
       </Card>
