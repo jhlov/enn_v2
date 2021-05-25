@@ -15,7 +15,7 @@ const EnneagramItem: React.FC<EnneagramItemProp> = ({
   onClickAnswer
 }) => {
   const [rSelected, setRSelected] = useState(-1);
-  const answerList = [
+  const exampleList = [
     "전혀 그렇지 않다",
     "그렇지 않다",
     "보통이다",
@@ -32,7 +32,7 @@ const EnneagramItem: React.FC<EnneagramItemProp> = ({
     <div className="enneagram-item mb-5">
       <p>{question}</p>
       <ButtonGroup className="answer-btn">
-        {answerList.map((e, index) => (
+        {exampleList.map((e, index) => (
           <Button
             key={index}
             className="mt-0"

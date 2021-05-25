@@ -1,8 +1,13 @@
+import axios from "axios";
 import React, { useState } from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import EnneagramItem from "./EnneagramItem";
 
-const Enneagram = () => {
+interface EnneagramProp {
+  onSubmit: Function;
+}
+
+const Enneagram: React.FC<EnneagramProp> = ({ onSubmit }) => {
   const questionList = [
     "나는 사람들을 쉽게 믿지 않지만 한번 신뢰한 사람과는 관계를 오래 지속한다.",
     "나는 어떠한 일이든지 한가지 일을 싫증내지 않고 갈등없이 꾸준히 할 수 있다.",
@@ -33,7 +38,7 @@ const Enneagram = () => {
     "나는 대부분의 사람들이 선호하는 재테크 방법보다는 나만의 독특한 방식으로 돈을 벌고 싶다.",
     "나는 거시적인 안목을 갖고 일을 추진하며 모든 사람들의 의견을 받아들여 화합을 추구한다.",
     "나는 스트레스 상황에서 나만의 공간에 들어가서 조용한 시간을 가지며 깊은 생각에 잠긴다.",
-    "나는 돈을 벌기 위해 한탕주의를 쫒는 것이 아니라 꾸준하고 성실하게 노력해야 한다고 생각한다.",
+    "나는 돈을 벌기 위해 한탕주의를 쫓는 것이 아니라 꾸준하고 성실하게 노력해야 한다고 생각한다.",
     "나는 감정적으로 끌리고 의미가 있다고 여겨지는 것을 위해서는 나 자신을 잃고 치열하게 몰입한다.",
     "나는 성공을 위한 자기개발이 아니면 의미가 없다고 느낀다.",
     "스트레스 상황에서 나는 우울해지며 우울을 즐기는 경향이 있다.",
@@ -90,9 +95,11 @@ const Enneagram = () => {
   const COUNT_PER_PAGE = 9;
   const TOTAL_PAGE = Math.floor(questionList.length / 9);
 
-  const [curPage, setCurPage] = useState(0);
-  const [curCount, setCurCount] = useState(1);
-  const [answerList, setAnswerList] = useState(Array(questionList.length));
+  const [curPage, setCurPage] = useState<number>(0);
+  const [curCount, setCurCount] = useState<number>(1);
+  const [answerList, setAnswerList] = useState<number[]>(
+    Array(questionList.length)
+  );
 
   const onClickAnswer = (index: number, answer: number) => {
     answerList[index] = answer;
@@ -100,6 +107,12 @@ const Enneagram = () => {
 
     // 새로운 답이 왔으면 다음 문제 표시
     if (index === curPage * COUNT_PER_PAGE + curCount - 1) {
+      // 모든 문제 풀이
+      if (index === questionList.length - 1) {
+        onSubmit(answerList);
+        return;
+      }
+
       if (curCount < COUNT_PER_PAGE) {
         setCurCount(curCount + 1);
 
@@ -107,6 +120,14 @@ const Enneagram = () => {
           onScrollToBottom();
         }, 10);
       } else {
+        // 마지막 페이지에 왔을 때 람다 콜드 스타트 방지,
+        if (curPage + 1 === TOTAL_PAGE - 1) {
+          console.log("람다 호출");
+          axios.get(
+            "https://gek2578p76.execute-api.ap-northeast-2.amazonaws.com/default/enneagram"
+          );
+        }
+
         // 다음 페이지
         setCurPage(curPage + 1);
         setCurCount(1);
