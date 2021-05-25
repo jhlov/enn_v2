@@ -1,7 +1,8 @@
 {
-  "name": "enn_v2",
+  "name": "enneagram",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jhlov.github.io/enneagram",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
@@ -13,6 +14,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "classnames": "^2.3.1",
+    "gh-pages": "^3.2.0",
     "highcharts": "^9.1.0",
     "highcharts-react-official": "^3.0.0",
     "node-sass": "^6.0.0",
@@ -25,9 +27,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
