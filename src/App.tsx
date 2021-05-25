@@ -25,10 +25,7 @@ function App() {
         "https://gek2578p76.execute-api.ap-northeast-2.amazonaws.com/default/enneagram",
         {
           params: {
-            //answerList: answerList
-            answerList: Array(81)
-              .fill(0)
-              .map(_ => Math.floor(Math.random() * 4) + 1)
+            answerList: answerList
           }
         }
       )
