@@ -24,9 +24,7 @@ const Result: React.FC<ResultProp> = ({ scoreList }) => {
   ];
 
   const getType: string = useMemo(() => {
-    console.log(scoreList);
     const maxScore = Math.max(...scoreList);
-    console.log(maxScore);
     return typeNameList
       .filter((_, index) => scoreList[index] === maxScore)
       .join(", ");

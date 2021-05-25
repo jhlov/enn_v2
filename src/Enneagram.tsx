@@ -122,7 +122,6 @@ const Enneagram: React.FC<EnneagramProp> = ({ onSubmit }) => {
       } else {
         // 마지막 페이지에 왔을 때 람다 콜드 스타트 방지,
         if (curPage + 1 === TOTAL_PAGE - 1) {
-          console.log("람다 호출");
           axios.get(
             "https://gek2578p76.execute-api.ap-northeast-2.amazonaws.com/default/enneagram"
           );
