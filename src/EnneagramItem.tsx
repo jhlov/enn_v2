@@ -35,7 +35,7 @@ const EnneagramItem: React.FC<EnneagramItemProp> = ({
         {exampleList.map((e, index) => (
           <Button
             key={index}
-            className="mt-0"
+            className="m-0"
             variant="outline-primary"
             onClick={() => _onClickAnswer(index + 1)}
             active={rSelected === index + 1}

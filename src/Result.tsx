@@ -42,13 +42,14 @@ const Result: React.FC<ResultProp> = ({ scoreList }) => {
       },
       pane: {
         startAngle: 20,
-        endAngle: 380
+        endAngle: 380,
+        size: window.innerWidth < 769 ? "60%" : "85%"
       },
       xAxis: {
         categories: typeNameList.map((e, index) => `${index + 1}(${e})`),
         labels: {
           style: {
-            fontSize: "20px"
+            fontSize: window.innerWidth < 769 ? "14px" : "20px"
           }
         }
       },
@@ -65,7 +66,7 @@ const Result: React.FC<ResultProp> = ({ scoreList }) => {
           dataLabels: {
             enabled: true,
             style: {
-              fontSize: "16px"
+              fontSize: window.innerWidth < 769 ? "14px" : "16px"
             },
             allowOverlap: true
           },

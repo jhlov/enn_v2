@@ -12,10 +12,19 @@
     margin-bottom: 0;
     padding: 40px;
     font-size: 28px;
+
+    @media screen and (max-width: 768px) {
+      padding: 16px;
+      font-size: 24px;
+    }
   }
 
   .btn-group {
     display: flex;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
 
     .btn {
       flex: 1;
@@ -30,6 +39,22 @@
       &:last-child {
         border-bottom-right-radius: 16px;
         border-top-right-radius: 0;
+      }
+
+      @media screen and (max-width: 991px) {
+        font-size: 18px;
+      }
+
+      @media screen and (max-width: 768px) {
+        font-size: 22px;
+
+        &:first-child {
+          border-bottom-left-radius: 0;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: 16px;
+        }
       }
     }
   }
